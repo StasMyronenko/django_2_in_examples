@@ -4,4 +4,45 @@
     <h1>{{ post.title }}</h1>
     <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
     {{ post.body|linebreaks }}
+    <p>
+        <a href="{% url "myblog:post_share" post.id %}">Share this post</a>
+    </p>
+
+    <h2>Similar posts</h2>
+    {% for s_post in similar_posts %}
+        <a href={{ s_post.get_absolute_url }}>{{ s_post.title }}</a>
+    {% endfor %}
+
+    {% with comments.count as total_comments %}
+        <h2>{{ total_comments }} comment{{ total_comments|pluralize }}</h2>
+    {% endwith %}
+
+
+
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+        <p>There are no comments yet.</p>
+    {% endfor %}
+
+
+
+    {% if new_comment %}
+        <h2>Your comment has been added.</h2>
+    {% else %}
+        <h2>Add a new comment</h2>
+        <form action="." method="post">
+            {{ comment_form.as_table }}
+            {% csrf_token %}
+            <input type="submit" value="Add comment">
+        </form>
+    {% endif %}
+
+
+
 {% endblock %}
