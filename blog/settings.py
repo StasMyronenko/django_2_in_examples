@@ -101,8 +101,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mysitesatpython@gmail.com'
-EMAIL_HOST_PASSWORD = 'ForDjangoBlog'
+EMAIL_HOST_USER = 'YourEmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'YourPassword'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # 'stasmyrnenko007@gmail.com', ['stasmyrnenko007@gmail.com'], fail_silently = False)
